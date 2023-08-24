@@ -2,7 +2,7 @@
 
 This project aims to provide a simple Java SQL builder that makes it easier to create dynamic SQL queries without any need to use Java StringBuilder. It also supports a very basic form of DDD specification pattern.
 
-You can use this builder to create dynamic JPQL queries since JPQLsemantics are very similar to SQL. 
+You can use this builder to create dynamic JPQL queries since JPQL semantics are very similar to SQL. 
 
 ## Installation
 
