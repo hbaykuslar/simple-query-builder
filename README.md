@@ -10,7 +10,7 @@ This project will hopefully be available on Maven Central. Until then you can do
 
 ```java
 //Create an sql query
-var sql = new PlainSqlBuilder()
+String sql = new PlainSqlBuilder()
         .select("o.name", "count(1)")
         .from("orders o")
         .where("o.created_date > :startDate")
@@ -33,7 +33,7 @@ var dateBetweenSpec = new Spec()
         .where("o.created_date > :startDate")
         .or("o.created_date <= :endDate");
 
-var sql = new PlainSqlBuilder()
+String sql = new PlainSqlBuilder()
         .select("o.*")
         .from("orders o")
         .where(dateBetweenSpec)
@@ -55,7 +55,7 @@ var topCustomersBuilder = new PlainSqlBuilder()
         .orderBy("expensiveOrder.amount desc")
         .limit(3);
 
-var sql = new PlainSqlBuilder()
+String sql = new PlainSqlBuilder()
         .select("o.*")
         .from("orders o")
         .where("o.id = :orderId")
