@@ -11,17 +11,17 @@ public class Spec {
 
 
     public Spec join(String joinStatement) {
-        joins.add(joinStatement.trim());
+        joins.add(" join " + joinStatement.trim());
         return this;
     }
 
     public Spec innerJoin(String joinStatement) {
-        joins.add("inner join " + joinStatement.trim());
+        joins.add(" inner join " + joinStatement.trim());
         return this;
     }
 
     public Spec leftJoin(String joinStatement) {
-        joins.add("left join " + joinStatement.trim());
+        joins.add(" left join " + joinStatement.trim());
         return this;
     }
 
