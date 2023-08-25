@@ -75,6 +75,8 @@ String sql = new PlainSqlBuilder()
 */
 ```
 
+For more usage examples you can check [tests](simple-query-builder-core/src/test/java/io/github/hbaykuslar/core/PlainSqlBuilderTest.java)
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first
