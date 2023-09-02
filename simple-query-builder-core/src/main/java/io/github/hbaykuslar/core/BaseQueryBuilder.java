@@ -191,7 +191,9 @@ public abstract class BaseQueryBuilder<T extends BaseQueryBuilder<T>> extends Sp
         else
             sql.append(String.join(", ", columns));
 
-        sql.append(" from ").append(from).append(String.join(" ", joins));
+        sql.append(" from ").append(from);
+        if (!joins.isEmpty())
+            sql.append(" ").append(String.join(" ", joins));
 
         if (!where.isEmpty())
             sql.append(buildWhereStatement());
