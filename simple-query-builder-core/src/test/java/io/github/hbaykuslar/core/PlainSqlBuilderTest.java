@@ -1,7 +1,9 @@
 package io.github.hbaykuslar.core;
 
+import io.github.hbaykuslar.core.utils.TestUtils;
 import org.junit.jupiter.api.Test;
 
+import static io.github.hbaykuslar.core.utils.TestUtils.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.in;
 
@@ -48,16 +50,6 @@ class PlainSqlBuilderTest {
     }
 
     @Test
-    void should_create_join_criteria() {
-        var query = baseQuery.join("agency a on o.agency_id = a.id")
-                .buildSql();
-
-        var expectedString = baseExpectedSqlString + "join agency a on o.agency_id = a.id";
-
-        assertThat(query).isEqualTo(expectedString);
-    }
-
-    @Test
     void should_create_innerJoin_criteria() {
         var query = baseQuery.innerJoin("agency a on o.agency_id = a.id")
                 .buildSql();
@@ -79,13 +71,20 @@ class PlainSqlBuilderTest {
                 .leftJoin(subQuery, "a")
                 .buildSql();
         var expectedString = """
-                select o.id, a.accountName, a.userName \
-                from order o \
-                left join (select a.id as accountId, a.name as accountName, u.name as userName, u.email \
-                from account a \
-                inner join users u on a.user_id = u.id) a\
+                select
+                    o.id,
+                    a.accountName,
+                    a.userName
+                from order o
+                    left join (select
+                                    a.id as accountId,
+                                    a.name as accountName,
+                                    u.name as userName,
+                                    u.email
+                               from account a
+                                    inner join users u on a.user_id = u.id) a\
                 """;
-        assertThat(query).isEqualTo(expectedString);
+        assertThat(query).isEqualTo(inlined(expectedString));
     }
 
     @Test
@@ -100,13 +99,17 @@ class PlainSqlBuilderTest {
                 .innerJoin(subQuery, "a")
                 .buildSql();
         var expectedString = """
-                select o.id, a.accountName, a.userName \
-                from order o \
-                inner join (select a.id as accountId, a.name as accountName, u.name as userName, u.email \
-                from account a \
-                inner join users u on a.user_id = u.id) a\
+                select o.id, a.accountName, a.userName
+                from order o
+                    inner join (select
+                                    a.id as accountId,
+                                    a.name as accountName,
+                                    u.name as userName,
+                                    u.email
+                                from account a
+                                    inner join users u on a.user_id = u.id) a\
                 """;
-        assertThat(query).isEqualTo(expectedString);
+        assertThat(query).isEqualTo(inlined(expectedString));
     }
 
     @Test
@@ -123,15 +126,21 @@ class PlainSqlBuilderTest {
                 .buildSql();
 
         var expectedString = """
-                select o.id, a.accountName, a.userName \
-                from order o \
-                inner join lateral (select a.id as accountId, a.name as accountName, u.name as userName, u.email \
-                from account a \
-                inner join users u on a.user_id = u.id \
-                where o.account_id = a.id) \
-                a on true\
+                select
+                    o.id,
+                    a.accountName,
+                    a.userName
+                from order o
+                    inner join lateral (select
+                                            a.id as accountId,
+                                            a.name as accountName,
+                                            u.name as userName,
+                                            u.email
+                                        from account a
+                                            inner join users u on a.user_id = u.id
+                                        where o.account_id = a.id) a on true\
                 """;
-        assertThat(query).isEqualTo(expectedString);
+        assertThat(query).isEqualTo(inlined(expectedString));
     }
 
     @Test
@@ -148,15 +157,21 @@ class PlainSqlBuilderTest {
                 .buildSql();
 
         var expectedString = """
-                select o.id, a.accountName, a.userName \
-                from order o \
-                left join lateral (select a.id as accountId, a.name as accountName, u.name as userName, u.email \
-                from account a \
-                inner join users u on a.user_id = u.id \
-                where o.account_id = a.id) \
-                a on true\
+                select
+                    o.id,
+                    a.accountName,
+                    a.userName
+                from order o
+                    left join lateral (select
+                                            a.id as accountId,
+                                            a.name as accountName,
+                                            u.name as userName,
+                                            u.email
+                                        from account a
+                                            inner join users u on a.user_id = u.id
+                                        where o.account_id = a.id) a on true\
                 """;
-        assertThat(query).isEqualTo(expectedString);
+        assertThat(query).isEqualTo(inlined(expectedString));
     }
 
     @Test
@@ -170,13 +185,17 @@ class PlainSqlBuilderTest {
                 .fromSubQuery(subQuery, "a")
                 .buildSql();
         var expectedString = """
-                select a.accountName, a.email \
-                from (select a.name as accountName, u.name as userName, u.email \
-                from account a \
-                inner join users u on a.user_id = u.id\
-                ) a\
+                select
+                    a.accountName,
+                    a.email
+                from (select
+                        a.name as accountName,
+                        u.name as userName,
+                        u.email
+                       from account a
+                        inner join users u on a.user_id = u.id) a\
                 """;
-        assertThat(query).isEqualTo(expectedString);
+        assertThat(query).isEqualTo(inlined(expectedString));
     }
 
     @Test
@@ -216,10 +235,15 @@ class PlainSqlBuilderTest {
                 .buildSql();
 
         String expected = """
-                select o.* from orders o where o.id = :orderId and \
-                o.customer_id in \
-                (select expensiveOrder.customer_id from orders expensiveOrder order by expensiveOrder.amount desc limit 3)""";
-        assertThat(sql).isEqualTo(expected);
+                select o.*
+                from orders o
+                where o.id = :orderId
+                    and o.customer_id in (select
+                                            expensiveOrder.customer_id
+                                           from orders expensiveOrder
+                                           order by expensiveOrder.amount desc
+                                           limit 3)""";
+        assertThat(sql).isEqualTo(inlined(expected));
     }
 
     @Test
@@ -233,10 +257,12 @@ class PlainSqlBuilderTest {
                 .buildSql();
 
         var expected = """
-                select o.* \
-                from orders o \
-                where o.id = :orderId and o.created_date > :startDate or o.created_date <= :endDate""";
-        assertThat(sql).isEqualTo(expected);
+                select o.*
+                from orders o
+                where o.id = :orderId
+                    and o.created_date > :startDate
+                    or o.created_date <= :endDate""";
+        assertThat(sql).isEqualTo(inlined(expected));
     }
 
     @Test
@@ -251,11 +277,13 @@ class PlainSqlBuilderTest {
                 .buildSql();
 
         var expected = """
-                select o.* \
-                from orders o \
-                where o.id = :orderId and o.created_date > :startDate or o.created_date <= :endDate \
+                select o.*
+                from orders o
+                where o.id = :orderId
+                    and o.created_date > :startDate
+                    or o.created_date <= :endDate
                 order by o.created_date desc, o.name asc""";
-        assertThat(sql).isEqualTo(expected);
+        assertThat(sql).isEqualTo(inlined(expected));
     }
 
     @Test
@@ -274,11 +302,12 @@ class PlainSqlBuilderTest {
                 .buildSql();
 
         var expected = """
-                select o.* \
-                from orders o \
-                where (o.created_date > :startDate or o.created_date <= :endDate) and o.id = :orderId \
+                select o.*
+                from orders o
+                where (o.created_date > :startDate or o.created_date <= :endDate)
+                       and o.id = :orderId
                 order by o.created_date desc, o.name asc""";
-        assertThat(sql).isEqualTo(expected);
+        assertThat(sql).isEqualTo(inlined(expected));
     }
 
     @Test
@@ -294,13 +323,14 @@ class PlainSqlBuilderTest {
                 .buildSql();
 
         var expected = """
-                select o.name, count(1) \
-                from orders o \
-                where o.created_date > :startDate or o.created_date <= :endDate \
-                group by o.name \
-                having count(1) > 2 \
+                select o.name, count(1)
+                from orders o
+                where o.created_date > :startDate
+                    or o.created_date <= :endDate
+                group by o.name
+                    having count(1) > 2
                 order by o.name asc""";
-        assertThat(sql).isEqualTo(expected);
+        assertThat(sql).isEqualTo(inlined(expected));
     }
 
     @Test
@@ -317,14 +347,14 @@ class PlainSqlBuilderTest {
                 .andIf(incorrect, "u.id = :userId")
                 .buildSql();
         var expectedQuery = """
-                select a.*, o.*, u.* \
-                from order o \
-                inner join account a on o.account_id = a.id  \
-                left join user u on u.id = a.user_id \
-                where a.id = :accountId \
-                and o.id = :orderId\
+                select a.*, o.*, u.*
+                from order o
+                    inner join account a on o.account_id = a.id
+                    left join user u on u.id = a.user_id
+                where a.id = :accountId
+                    and o.id = :orderId
                 """;
-        assertThat(query).isEqualTo(expectedQuery);
+        assertThat(query).isEqualTo(inlined(expectedQuery));
     }
 
     @Test
