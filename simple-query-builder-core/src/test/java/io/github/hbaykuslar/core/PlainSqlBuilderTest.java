@@ -1,36 +1,35 @@
 package io.github.hbaykuslar.core;
 
-import io.github.hbaykuslar.core.utils.TestUtils;
 import org.junit.jupiter.api.Test;
 
-import static io.github.hbaykuslar.core.utils.TestUtils.*;
+import static io.github.hbaykuslar.core.utils.TestUtils.inlined;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.in;
 
 class PlainSqlBuilderTest {
 
-    private final PlainSqlBuilder baseQuery = new PlainSqlBuilder()
-            .select("o.*")
-            .from("order o");
-    private static final String baseExpectedSqlString = "select o.* from order o ";
 
     @Test
     void should_set_offset() {
-        var query = baseQuery
+        var query = new PlainSqlBuilder()
+                .select("o.*")
+                .from("order o")
                 .limit(5)
                 .offset(4)
                 .buildSql();
-        var expectedString = baseExpectedSqlString + "limit 5 offset 4";
+        var expectedString = "select o.* from order o limit 5 offset 4";
 
         assertThat(query).isEqualTo(expectedString);
     }
 
     @Test
     void should_create_leftJoin_criteria() {
-        var query = baseQuery.leftJoin("agency a on o.agency_id = a.id")
+        var query = new PlainSqlBuilder()
+                .select("o.*")
+                .from("order o")
+                .leftJoin("agency a on o.agency_id = a.id")
                 .buildSql();
 
-        var expectedString = baseExpectedSqlString + "left join agency a on o.agency_id = a.id";
+        var expectedString = "select o.* from order o left join agency a on o.agency_id = a.id";
 
         assertThat(query).isEqualTo(expectedString);
     }
@@ -51,10 +50,13 @@ class PlainSqlBuilderTest {
 
     @Test
     void should_create_innerJoin_criteria() {
-        var query = baseQuery.innerJoin("agency a on o.agency_id = a.id")
+        var query = new PlainSqlBuilder()
+                .select("o.*")
+                .from("order o")
+                .innerJoin("agency a on o.agency_id = a.id")
                 .buildSql();
 
-        var expectedString = baseExpectedSqlString + "inner join agency a on o.agency_id = a.id";
+        var expectedString = "select o.* from order o inner join agency a on o.agency_id = a.id";
 
         assertThat(query).isEqualTo(expectedString);
     }
