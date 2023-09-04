@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.hbaykuslar</groupId>
         <artifactId>simple-query-builder</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>0.1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>simple-query-builder-core</artifactId>
