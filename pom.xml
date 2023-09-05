@@ -121,6 +121,10 @@
               <version>${version.maven-release-plugin}</version>
               <configuration>
                 <tagNameFormat>@{project.version}</tagNameFormat>
+                <autoVersionSubmodules>true</autoVersionSubmodules>
+                <useReleaseProfile>false</useReleaseProfile>
+                <releaseProfiles>release</releaseProfiles>
+                <goals>deploy</goals>
               </configuration>
             </plugin>
             <!-- The key's name & passphrase are configured via GitHub's setup-java action. -->
