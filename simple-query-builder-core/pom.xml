@@ -4,11 +4,11 @@
     <parent>
         <groupId>io.github.hbaykuslar</groupId>
         <artifactId>simple-query-builder</artifactId>
-        <version>0.1.0</version>
+        <version>0.1.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>simple-query-builder-core</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
