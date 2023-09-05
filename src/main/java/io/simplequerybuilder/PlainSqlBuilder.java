@@ -1,4 +1,4 @@
-package io.github.hbaykuslar.core;
+package io.simplequerybuilder;
 
 public class PlainSqlBuilder extends BaseQueryBuilder<PlainSqlBuilder>{
 

@@ -1,4 +1,4 @@
-package io.github.hbaykuslar.core;
+package io.simplequerybuilder;
 
 
 import java.util.*;

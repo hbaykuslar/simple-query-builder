@@ -1,4 +1,4 @@
-package io.github.hbaykuslar.core.utils;
+package io.simplequerybuilder.utils;
 
 import java.util.regex.Pattern;
 

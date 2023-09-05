@@ -1,8 +1,8 @@
-package io.github.hbaykuslar.core;
+package io.simplequerybuilder;
 
 import org.junit.jupiter.api.Test;
 
-import static io.github.hbaykuslar.core.utils.TestUtils.inlined;
+import static io.simplequerybuilder.utils.TestUtils.inlined;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PlainSqlBuilderTest {
