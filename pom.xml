@@ -1,154 +1,164 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>io.github.hbaykuslar</groupId>
-  <artifactId>simple-query-builder</artifactId>
-  <version>0.1.3-SNAPSHOT</version>
-  <packaging>jar</packaging>
+    <groupId>io.github.hbaykuslar</groupId>
+    <artifactId>simple-query-builder</artifactId>
+    <version>0.1.3-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-  <name>simple-query-builder</name>
-  <url>https://github.com/hbaykuslar/simple-query-builder</url>
-  <description>
-    This project aims to provide a simple Java SQL builder which makes it easier to create
-    dynamic SQL queries without any need to use java StringBuilder.
-  </description>
-
-  <licenses>
-    <license>
-      <name>MIT</name>
-      <url>LICENSE</url>
-    </license>
-  </licenses>
-
-  <developers>
-    <developer>
-      <name>Hakan Baykuşlar</name>
-      <email>hakanbaykuslar@gmail.com</email>
-      <organization>hbaykuslar</organization>
-      <organizationUrl>https://https://github.com/hbaykuslar</organizationUrl>
-    </developer>
-  </developers>
-
-  <scm>
-    <connection>scm:git:git@github.com:hbaykuslar/simple-query-builder.git</connection>
-    <developerConnection>scm:git:git@github.com:hbaykuslar/simple-query-builder.git</developerConnection>
+    <name>simple-query-builder</name>
     <url>https://github.com/hbaykuslar/simple-query-builder</url>
-    <tag>HEAD</tag>
-  </scm>
+    <description>
+        This project aims to provide a simple Java SQL builder which makes it easier to create
+        dynamic SQL queries without any need to use java StringBuilder.
+    </description>
 
-  <distributionManagement>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
-    <repository>
-      <id>ossrh</id>
-      <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-    </repository>
-  </distributionManagement>
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>LICENSE</url>
+        </license>
+    </licenses>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>17</maven.compiler.source>
-    <maven.compiler.target>17</maven.compiler.target>
-  </properties>
+    <developers>
+        <developer>
+            <name>Hakan Baykuşlar</name>
+            <email>hakanbaykuslar@gmail.com</email>
+            <organization>hbaykuslar</organization>
+            <organizationUrl>https://https://github.com/hbaykuslar</organizationUrl>
+        </developer>
+    </developers>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <version>5.7.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.assertj</groupId>
-      <artifactId>assertj-core</artifactId>
-      <version>3.19.0</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+    <scm>
+        <connection>scm:git:git@github.com:hbaykuslar/simple-query-builder.git</connection>
+        <developerConnection>scm:git:git@github.com:hbaykuslar/simple-query-builder.git</developerConnection>
+        <url>https://github.com/hbaykuslar/simple-query-builder</url>
+        <tag>HEAD</tag>
+    </scm>
 
-  <profiles>
-    <profile>
-      <id>release</id>
-      <build>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.7.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.19.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
         <pluginManagement>
-          <plugins>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-source-plugin</artifactId>
-              <version>2.2.1</version>
-              <executions>
-                <execution>
-                  <id>attach-sources</id>
-                  <goals>
-                    <goal>jar</goal>
-                  </goals>
-                </execution>
-              </executions>
-            </plugin>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-javadoc-plugin</artifactId>
-              <version>2.9.1</version>
-              <executions>
-                <execution>
-                  <id>attach-javadocs</id>
-                  <goals>
-                    <goal>jar</goal>
-                  </goals>
-                </execution>
-              </executions>
-            </plugin>
-            <plugin>
-              <artifactId>maven-release-plugin</artifactId>
-              <version>2.5.3</version>
-              <configuration>
-                <tagNameFormat>@{project.version}</tagNameFormat>
-                <autoVersionSubmodules>true</autoVersionSubmodules>
-                <useReleaseProfile>false</useReleaseProfile>
-                <releaseProfiles>release</releaseProfiles>
-                <goals>deploy</goals>
-              </configuration>
-            </plugin>
-            <!-- The key's name & passphrase are configured via GitHub's setup-java action. -->
-            <plugin>
-              <artifactId>maven-gpg-plugin</artifactId>
-              <version>1.6</version>
-              <executions>
-                <execution>
-                  <id>sign-artifacts</id>
-                  <phase>verify</phase>
-                  <goals>
-                    <goal>sign</goal>
-                  </goals>
-                  <configuration>
-                    <!-- This is required to make sure the plugin does not stop asking for -->
-                    <!-- user input on the passphrase -->
-                    <gpgArguments>
-                      <arg>--pinentry-mode</arg>
-                      <arg>loopback</arg>
-                    </gpgArguments>
-                  </configuration>
-                </execution>
-              </executions>
-            </plugin>
-            <plugin>
-              <groupId>org.sonatype.plugins</groupId>
-              <artifactId>nexus-staging-maven-plugin</artifactId>
-              <version>1.6.13</version>
-              <extensions>true</extensions>
-              <configuration>
-                <serverId>ossrh</serverId>
-                <nexusUrl>https://s01.oss.sonatype.org</nexusUrl>
-                <autoReleaseAfterClose>true</autoReleaseAfterClose>
-              </configuration>
-            </plugin>
-          </plugins>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.2.1</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>3.5.0</version>
+                    <executions>
+                        <execution>
+                            <id>attach-javadocs</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
         </pluginManagement>
-      </build>
-    </profile>
-  </profiles>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>ci-cd</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.sonatype.plugins</groupId>
+                            <artifactId>nexus-staging-maven-plugin</artifactId>
+                            <version>1.6.13</version>
+                            <extensions>true</extensions>
+                            <configuration>
+                                <serverId>ossrh</serverId>
+                                <nexusUrl>https://s01.oss.sonatype.org</nexusUrl>
+                                <autoReleaseAfterClose>${env.AUTO_RELEASE_AFTER_CLOSE}</autoReleaseAfterClose>
+                            </configuration>
+                        </plugin>
+                        <plugin>
+                            <artifactId>maven-release-plugin</artifactId>
+                            <version>2.5.3</version>
+                            <configuration>
+                                <tagNameFormat>@{project.version}</tagNameFormat>
+                            </configuration>
+                            <executions>
+                                <execution>
+                                    <id>default</id>
+                                    <goals>
+                                        <goal>perform</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+                        <!-- The key's name & passphrase are configured via GitHub's setup-java action. -->
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-gpg-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                    <id>sign-artifacts</id>
+                                    <phase>verify</phase>
+                                    <goals>
+                                        <goal>sign</goal>
+                                    </goals>
+                                    <configuration>
+                                        <gpgArguments>
+                                            <arg>--pinentry-mode</arg>
+                                            <arg>loopback</arg>
+                                        </gpgArguments>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+    </profiles>
 </project>
