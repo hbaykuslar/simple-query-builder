@@ -5,7 +5,7 @@
 
     <groupId>io.github.hbaykuslar</groupId>
     <artifactId>simple-query-builder</artifactId>
-    <version>0.1.5</version>
+    <version>0.1.9-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>simple-query-builder</name>
