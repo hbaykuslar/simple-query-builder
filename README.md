@@ -6,7 +6,25 @@ You can use this builder to create dynamic JPQL queries since JPQL semantics are
 
 ## Installation
 
-This project will hopefully be available on Maven Central. Until then you can download the source code and use it as you wish.
+### Maven
+
+```xml
+<dependency>
+  <groupId>io.github.hbaykuslar</groupId>
+  <artifactId>simple-query-builder</artifactId>
+  <version>0.1.15</version>
+</dependency>
+```
+
+### Gradle
+```groovy
+repositories {
+  mavenCentral()
+}
+dependencies {
+  implementation 'io.github.hbaykuslar:simple-query-builder:0.1.15'
+}
+```
 
 ## Usage
 
