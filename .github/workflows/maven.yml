@@ -51,7 +51,7 @@ jobs:
     - name: Release With Maven
       run: |
         mvn -B -U clean\
-          -Pci-cd \
+          -Prelease \
           release:prepare \
           release:perform \
           javadoc:jar \
