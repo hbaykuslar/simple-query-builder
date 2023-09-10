@@ -51,7 +51,7 @@ String sql = new PlainSqlBuilder()
 // Create a specification and reuse it for multiple queries
 var dateBetweenSpec = new Spec()
         .where("o.created_date > :startDate")
-        .or("o.created_date <= :endDate");
+        .and("o.created_date <= :endDate");
 
 String sql = new PlainSqlBuilder()
         .select("o.*")
@@ -63,7 +63,7 @@ String sql = new PlainSqlBuilder()
 /*
             select o.* 
             from orders o 
-            where (o.created_date > :startDate or o.created_date <= :endDate) 
+            where (o.created_date > :startDate and o.created_date <= :endDate) 
                 and o.id = :orderId 
             order by o.created_date desc, o.name asc
 */
