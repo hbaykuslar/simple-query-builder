@@ -34,7 +34,7 @@ String sql = new PlainSqlBuilder()
         .select("o.name", "count(1)")
         .from("orders o")
         .where("o.created_date > :startDate")
-        .or("o.created_date <= :endDate")
+        .and("o.created_date <= :endDate")
         .groupBy("o.name")
         .having("count(1) > 2")
         .orderBy("o.name asc")
@@ -42,7 +42,7 @@ String sql = new PlainSqlBuilder()
 /*
             select o.name, count(1) 
             from orders o 
-            where o.created_date > :startDate or o.created_date <= :endDate 
+            where o.created_date > :startDate and o.created_date <= :endDate 
             group by o.name 
             having count(1) > 2 
             order by o.name asc
