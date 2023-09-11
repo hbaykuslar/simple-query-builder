@@ -12,7 +12,7 @@ You can use this builder to create dynamic JPQL queries since JPQL semantics are
 <dependency>
   <groupId>io.github.hbaykuslar</groupId>
   <artifactId>simple-query-builder</artifactId>
-  <version>0.1.15</version>
+  <version>0.1.17</version>
 </dependency>
 ```
 
@@ -22,7 +22,7 @@ repositories {
   mavenCentral()
 }
 dependencies {
-  implementation 'io.github.hbaykuslar:simple-query-builder:0.1.15'
+  implementation 'io.github.hbaykuslar:simple-query-builder:0.1.17'
 }
 ```
 
