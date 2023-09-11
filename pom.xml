@@ -89,7 +89,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.5.0</version>
+                    <version>2.9.1</version>
                     <executions>
                         <execution>
                             <id>attach-javadocs</id>
@@ -105,45 +105,6 @@
 
     <profiles>
         <profile>
-            <id>local-release</id>
-            <build>
-                <pluginManagement>
-                    <plugins>
-                        <plugin>
-                            <groupId>org.sonatype.plugins</groupId>
-                            <artifactId>nexus-staging-maven-plugin</artifactId>
-                            <version>1.6.13</version>
-                            <extensions>true</extensions>
-                            <configuration>
-                                <serverId>ossrh</serverId>
-                                <nexusUrl>https://s01.oss.sonatype.org</nexusUrl>
-                                <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                            </configuration>
-                        </plugin>
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-gpg-plugin</artifactId>
-                            <executions>
-                                <execution>
-                                    <id>sign-artifacts</id>
-                                    <phase>verify</phase>
-                                    <goals>
-                                        <goal>sign</goal>
-                                    </goals>
-                                    <configuration>
-                                        <gpgArguments>
-                                            <arg>--pinentry-mode</arg>
-                                            <arg>loopback</arg>
-                                        </gpgArguments>
-                                    </configuration>
-                                </execution>
-                            </executions>
-                        </plugin>
-                    </plugins>
-                </pluginManagement>
-            </build>
-        </profile>
-        <profile>
             <id>release</id>
             <build>
                 <pluginManagement>
@@ -156,7 +117,7 @@
                             <configuration>
                                 <serverId>ossrh</serverId>
                                 <nexusUrl>https://s01.oss.sonatype.org</nexusUrl>
-                                <autoReleaseAfterClose>${env.AUTO_RELEASE_AFTER_CLOSE}</autoReleaseAfterClose>
+                                <autoReleaseAfterClose>true</autoReleaseAfterClose>
                             </configuration>
                         </plugin>
                         <plugin>
@@ -190,6 +151,8 @@
                                         <goal>sign</goal>
                                     </goals>
                                     <configuration>
+                                        <keyname>${gpg.keyname}</keyname>
+                                        <passphraseServerId>${gpg.keyname}</passphraseServerId>
                                         <gpgArguments>
                                             <arg>--pinentry-mode</arg>
                                             <arg>loopback</arg>
