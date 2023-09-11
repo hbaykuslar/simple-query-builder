@@ -34,7 +34,7 @@
 
     <scm>
         <connection>scm:git:https://github.com/hbaykuslar/simple-query-builder.git</connection>
-        <developerConnection>scm:git:https://github.com/hbaykuslar/simple-query-builder.git</developerConnection>
+        <developerConnection>scm:git:git@github.com:hbaykuslar/simple-query-builder.git</developerConnection>
         <url>https://github.com/hbaykuslar/simple-query-builder</url>
         <tag>HEAD</tag>
     </scm>
